@@ -60,7 +60,6 @@ def custom_set_out_dir(cfg, cfg_fname, name_tag):
     """
     run_name = os.path.splitext(os.path.basename(cfg_fname))[0]
     run_name += f"-{name_tag}" if name_tag else ""
-#     run_name += "asdasd"
     cfg.out_dir = os.path.join(cfg.out_dir, run_name)
 
 
@@ -117,6 +116,8 @@ def run_loop_settings():
 if __name__ == '__main__':
     # Load cmd line args
     args = parse_args()
+    # default prep w/ GPU
+    cfg.prep_w_GPU = True
     # Load config file
     set_cfg(cfg)
     load_cfg(cfg, args)
@@ -132,7 +133,6 @@ if __name__ == '__main__':
         cfg.dataset.split_index = split_index
         cfg.seed = seed
         cfg.run_id = run_id
-#         cfg.accelerator = "ddp" ## will it work? 
         seed_everything(cfg.seed)
         auto_select_device()
         if cfg.pretrained.dir:
@@ -164,7 +164,6 @@ if __name__ == '__main__':
                                 "default train.mode, set it to `custom`")
             datamodule = GraphGymDataModule()
             train(model, datamodule, logger=True)
-#             train(model, datamodule, logger=True, trainer_config= {"accelerator": "ddp"})
         else:
             train_dict[cfg.train.mode](loggers, loaders, model, optimizer,
                                        scheduler)

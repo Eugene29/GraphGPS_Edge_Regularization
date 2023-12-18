@@ -203,6 +203,8 @@ def load_dataset_master(format, name, dataset_dir):
         # Estimate directedness based on 10 graphs to save time.
         is_undirected = all(d.is_undirected() for d in dataset[:10])
         logging.info(f"  ...estimated to be undirected: {is_undirected}")
+        msg = "GPU installed, using CUPY to preprocess, brrr" if torch.cuda.is_available() and cfg.prep_w_GPU else "using Numpy instead of Cupy w/ GPU"
+        logging.info(msg)
         pre_transform_in_memory(dataset,
                                 partial(compute_posenc_stats,
                                         pe_types=pe_enabled_list,
