@@ -11,7 +11,7 @@ Two parameters:
 
 Arxiv: https://arxiv.org/abs/2312.11730
 
-'''
+```
 @misc{ku2024stronger,
       title={Stronger Graph Transformer with Regularized Attention Scores}, 
       author={Eugene Ku and Swetha Arunraj},
@@ -20,4 +20,4 @@ Arxiv: https://arxiv.org/abs/2312.11730
       archivePrefix={arXiv},
       primaryClass={cs.LG}
 }
-'''
+```
